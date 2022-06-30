@@ -4,6 +4,7 @@
 static TaskHandle_t task_1 = NULL;
 static TaskHandle_t task_2 = NULL;
 
+// task declarations
 void task_1_code(void *pvParameters);
 void task_2_code(void *pvParameters);
 
