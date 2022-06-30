@@ -17,23 +17,23 @@ void setup()
 
   // create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0
   xTaskCreatePinnedToCore(
-      task_1_code, /* Task function. */
-      "task_1",    /* name of task. */
-      10000,       /* Stack size of task */
-      NULL,        /* parameter of the task */
-      1,           /* priority of the task */
-      &task_1,     /* Task handle to keep track of created task */
-      0);          /* pin task to core 0 */
+      task_1_code, // task function
+      "task_1",    // name of task
+      10000,       // stack size of task
+      NULL,        // parameter of the task
+      1,           // priority of the task
+      &task_1,     // Task handle to keep track of created task
+      0);          // pin task to core 0
 
   // create a task that will be executed in the Task2code() function, with priority 1 and executed on core 1
   xTaskCreatePinnedToCore(
-      task_2_code, /* Task function. */
-      "task_2",    /* name of task. */
-      10000,       /* Stack size of task */
-      NULL,        /* parameter of the task */
-      1,           /* priority of the task */
-      &task_2,     /* Task handle to keep track of created task */
-      1);          /* pin task to core 1 */
+      task_2_code, // task function
+      "task_2",    // name of task
+      10000,       // stack size of task
+      NULL,        // parameter of the task
+      1,           // priority of the task
+      &task_2,     // Task handle to keep track of created task
+      1);          // pin task to core 1
 }
 
 // task 1 code
@@ -44,9 +44,13 @@ void task_1_code(void *pvParameters)
   Serial.print("task 1 running on core ");
   Serial.println(xPortGetCoreID());
 
+  // do below always
   while (true)
   {
+    // debug for task is running
     Serial.println("hello from task 1");
+
+    // cool down the task loop
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
@@ -59,9 +63,13 @@ void task_2_code(void *pvParameters)
   Serial.print("task 2 running on core ");
   Serial.println(xPortGetCoreID());
 
+  // do below always
   while (true)
   {
+    // debug for task is running
     Serial.println("hello from task 2");
+
+    // cool down the task loop
     vTaskDelay(5000 / portTICK_PERIOD_MS);
   }
 }
