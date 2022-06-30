@@ -111,17 +111,27 @@ void task_2_code(void *pvParameters)
   }
 }
 
+// server get endpoint function
 void server_get()
 {
+  // create JSON object
   server_create_json("random", esp_random(), "int");
+
+  // send response to client
   server.send(200, "application/json", server_response_buffer);
 }
 
+// server JSON create function
 void server_create_json(char *tag, double value, char *unit)
 {
+  // clear the existing JSON object
   server_response_json.clear();
+
+  // build the JSON object
   server_response_json["type"] = tag;
   server_response_json["value"] = value;
   server_response_json["unit"] = unit;
+
+  // build the response buffer
   serializeJson(server_response_json, server_response_buffer);
 }
